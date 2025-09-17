@@ -29,7 +29,7 @@ export function AdminSidebar() {
           Leads
         </NavItem>
         <NavItem
-          href="/admin/settings"
+          href="/admin/dashboard/settings"
           $active={pathname === '/admin/settings'}
         >
           Settings

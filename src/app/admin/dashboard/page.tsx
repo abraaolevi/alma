@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+
 import { DashboardHeader, LeadsTable, SearchAndFilter } from './components';
 import { DashboardContainer } from './dashboard.styles';
 
