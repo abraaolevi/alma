@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+}
+
+// First Name
+// Last Name
+// Email
+// Linkedin
+// Visas that you’re interested
+// Resume / CV (file upload)
+// Open long input
+
+model Lead {
+    id                   Int      @id @default(autoincrement())
+    firstName            String
+    lastName             DateTime @default(now())
+    email                String   @unique
+    countryOfCitizenship String
+    websiteUrl           String?
+    moreInfo             String?
+
+    createdAt DateTime   @default(now())
+    updatedAt DateTime   @updatedAt
+    LeadVisa  LeadVisa[]
+}
+
+model LeadVisa {
+    leadId Int
+    visaId Int
+
+    lead Lead @relation(fields: [leadId], references: [id])
+    visa Visa @relation(fields: [visaId], references: [id])
+
+    @@id([leadId, visaId])
+    @@index([visaId], name: "idx_visaId")
+}
+
+model Visa {
+    id       Int        @id @default(autoincrement())
+    name     String     @unique
+    LeadVisa LeadVisa[]
+}
