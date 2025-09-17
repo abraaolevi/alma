@@ -1,25 +1,28 @@
-import "~/styles/globals.css"
+import '~/styles/globals.css';
 
-import { type Metadata } from "next"
-import { Geist } from "next/font/google"
+import { type Metadata } from 'next';
+import { Plus_Jakarta_Sans } from 'next/font/google';
+import StyledComponentsRegistry from '~/lib/registry';
 
 export const metadata: Metadata = {
-  title: "Alma assignment",
-  description: "Alma assignment",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  title: 'Alma assignment',
+  description: 'Alma assignment',
+  icons: [{ rel: 'icon', url: '/favicon.ico' }],
 };
 
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-plus-jakarta-sans',
 });
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geist.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={`${plusJakartaSans.variable}`}>
+      <body>
+        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+      </body>
     </html>
   );
 }

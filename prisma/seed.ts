@@ -1,17 +1,17 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 async function main() {
   // Create visa types
   const visaTypes = [
-    { name: "O-1" },
-    { name: "H-1A" },
-    { name: "EB-2 NIW" },
+    { name: 'O-1' },
+    { name: 'H-1A' },
+    { name: 'EB-2 NIW' },
     { name: "I don't know" },
   ];
 
-  console.log("Seeding visa types...");
+  console.log('Seeding visa types...');
 
   for (const visaType of visaTypes) {
     await prisma.visa.upsert({
@@ -22,7 +22,7 @@ async function main() {
     console.log(`Created/updated visa type: ${visaType.name}`);
   }
 
-  console.log("Seeding completed!");
+  console.log('Seeding completed!');
 }
 
 main()

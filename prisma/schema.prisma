@@ -14,7 +14,7 @@ model Lead {
     id         Int        @id @default(autoincrement())
     firstName  String
     lastName   String
-    email      String     @unique
+    email      String
     websiteUrl String
     country    String
     resumeUrl  String?
