@@ -31,6 +31,7 @@ const StyledSelect = styled.select<{ $hasError?: boolean }>`
   color: var(--color-black);
   transition: border-color 0.2s ease;
   cursor: pointer;
+  height: 40px;
 
   &:focus {
     outline: none;
@@ -52,7 +53,6 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 
     return (
       <SelectWrapper>
-        {/* {label && <Label htmlFor={selectId}>{label}</Label>} */}
         <StyledSelect id={selectId} $hasError={!!error} ref={ref} {...props}>
           {placeholder && (
             <option value="" disabled>

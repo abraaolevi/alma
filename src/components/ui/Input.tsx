@@ -13,12 +13,6 @@ const InputWrapper = styled.div`
   gap: var(--spacing-xs);
 `;
 
-// const Label = styled.label`
-//   font-weight: 500;
-//   color: var(--color-black);
-//   font-size: 0.875rem;
-// `;
-
 const StyledInput = styled.input<{ $hasError?: boolean }>`
   padding: var(--spacing-sm) var(--spacing-md);
   border: 1.5px solid
@@ -29,6 +23,7 @@ const StyledInput = styled.input<{ $hasError?: boolean }>`
   background-color: var(--color-white);
   color: var(--color-black);
   transition: border-color 0.2s ease;
+  height: 40px;
 
   &::placeholder {
     color: rgb(201, 201, 201);
@@ -54,7 +49,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <InputWrapper>
-        {/* {_label && <Label htmlFor={inputId}>{_label}</Label>} */}
         <StyledInput id={inputId} $hasError={!!error} ref={ref} {...props} />
         {error && <ErrorMessage>{error}</ErrorMessage>}
       </InputWrapper>

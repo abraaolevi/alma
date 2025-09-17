@@ -16,7 +16,9 @@ export const LoginCard = styled.div`
   padding: var(--spacing-xl);
   width: 100%;
   max-width: 400px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
 `;
 
 export const LoginHeader = styled.div`
@@ -41,15 +43,4 @@ export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
-`;
-
-export const ErrorMessage = styled.div`
-  color: var(--color-error);
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-align: center;
-  padding: var(--spacing-sm);
-  background-color: #fef2f2;
-  border: 1px solid #fecaca;
-  border-radius: var(--radius);
 `;

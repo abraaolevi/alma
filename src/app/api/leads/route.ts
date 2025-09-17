@@ -91,8 +91,8 @@ export async function GET(request: NextRequest) {
     const queryParams = leadQuerySchema.parse({
       page: searchParams.get('page'),
       limit: searchParams.get('limit'),
-      status: searchParams.get('status'),
-      search: searchParams.get('search'),
+      status: searchParams.get('status') ?? undefined,
+      search: searchParams.get('search') ?? undefined,
     });
 
     const { page, limit, status, search } = queryParams;
