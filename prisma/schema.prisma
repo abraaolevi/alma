@@ -10,26 +10,25 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-// First Name
-// Last Name
-// Email
-// Linkedin
-// Visas that you’re interested
-// Resume / CV (file upload)
-// Open long input
-
 model Lead {
-    id                   Int      @id @default(autoincrement())
-    firstName            String
-    lastName             DateTime @default(now())
-    email                String   @unique
-    countryOfCitizenship String
-    websiteUrl           String?
-    moreInfo             String?
+    id         Int        @id @default(autoincrement())
+    firstName  String
+    lastName   String
+    email      String     @unique
+    websiteUrl String
+    country    String
+    resumeUrl  String?
+    moreInfo   String?
+    status     LeadStatus @default(PENDING)
 
     createdAt DateTime   @default(now())
     updatedAt DateTime   @updatedAt
     LeadVisa  LeadVisa[]
+}
+
+enum LeadStatus {
+    PENDING
+    REACHED_OUT
 }
 
 model LeadVisa {
