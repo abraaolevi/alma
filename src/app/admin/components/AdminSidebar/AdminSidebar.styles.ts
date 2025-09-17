@@ -67,6 +67,8 @@ export const NavItem = styled.a<{ $active?: boolean }>`
 `;
 
 export const SidebarFooter = styled.div`
+  position: fixed;
+  bottom: var(--spacing-lg);
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
