@@ -84,6 +84,17 @@ export function LeadsTable({ search, status }: LeadsTableProps) {
     return `${lead.firstName} ${lead.lastName}`;
   };
 
+  const renderFileDownload = (resumeUrl: string | null) => {
+    if (!resumeUrl) {
+      return <span>N/A</span>;
+    }
+    return (
+      <a href={resumeUrl} target="_blank" rel="noopener noreferrer" download>
+        Download
+      </a>
+    );
+  };
+
   // Sort leads
   const sortedLeads = [...leads].sort((a, b) => {
     let aValue: string | number;
@@ -159,6 +170,7 @@ export function LeadsTable({ search, status }: LeadsTableProps) {
               Country
               <SortIcon>{getSortIcon('country')}</SortIcon>
             </TableHeaderCell>
+            <TableHeaderCell>Resume/File</TableHeaderCell>
             <TableHeaderCell>Action</TableHeaderCell>
           </TableHeaderRow>
         </TableHeader>
@@ -171,6 +183,7 @@ export function LeadsTable({ search, status }: LeadsTableProps) {
                 {lead.status === 'PENDING' ? 'Pending' : 'Reached Out'}
               </TableCell>
               <TableCell>{lead.country}</TableCell>
+              <TableCell>{renderFileDownload(lead.resumeUrl)}</TableCell>
               <TableCell>
                 <Button
                   onClick={() => void handleStatusClick(lead)}
@@ -184,7 +197,7 @@ export function LeadsTable({ search, status }: LeadsTableProps) {
         </TableBody>
         <TableFooter>
           <TableRow>
-            <TableCell colSpan={5}>
+            <TableCell colSpan={6}>
               <Pagination
                 currentPage={pagination.page}
                 totalPages={pagination.totalPages}
