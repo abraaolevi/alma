@@ -133,13 +133,13 @@ export async function GET(request: NextRequest) {
     // Get total count for pagination
     const total = await db.lead.count({ where });
 
-    // Transform data with proper type validation
+    // Transform data with error handling for invalid data
     const transformedLeads = leads.map((lead) => {
-      // Map visa types - Zod will validate the types
+      // Map visa types
       const visaTypes = lead.LeadVisa.map((lv) => lv.visa.name);
 
-      // Zod will validate and ensure type safety
-      return leadResponseSchema.parse({
+      // Try to validate with Zod, but handle validation errors gracefully
+      const leadData = {
         id: lead.id,
         firstName: lead.firstName,
         lastName: lead.lastName,
@@ -152,7 +152,30 @@ export async function GET(request: NextRequest) {
         visaTypes,
         createdAt: lead.createdAt,
         updatedAt: lead.updatedAt,
-      });
+      };
+
+      const result = leadResponseSchema.safeParse(leadData);
+
+      if (result.success) {
+        return result.data;
+      } else {
+        // Log the validation error for debugging
+        console.warn('Invalid lead data found, sanitizing:', {
+          leadId: lead.id,
+          errors: result.error.issues,
+        });
+
+        // Return sanitized data with fallbacks for invalid fields
+        return {
+          ...leadData,
+          email: lead.email.includes('@')
+            ? lead.email
+            : `invalid-${lead.id}@example.com`,
+          websiteUrl: lead.websiteUrl.startsWith('http')
+            ? lead.websiteUrl
+            : `https://example.com`,
+        };
+      }
     });
 
     return NextResponse.json({

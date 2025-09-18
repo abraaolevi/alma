@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { Button } from '~/components';
+import { useEffect, useState } from 'react';
+import { Button, Pagination } from '~/components';
 import { useLeads } from '~/hooks';
 import { type LeadResponse } from '~/schemas';
 import {
@@ -13,6 +13,7 @@ import {
   TableBody,
   TableCell,
   TableContainer,
+  TableFooter,
   TableHeader,
   TableHeaderCell,
   TableHeaderRow,
@@ -30,13 +31,24 @@ type SortDirection = 'asc' | 'desc';
 export function LeadsTable({ search, status }: LeadsTableProps) {
   const [sortField, setSortField] = useState<SortField>('createdAt');
   const [sortDirection, setSortDirection] = useState<SortDirection>('desc');
+  const [currentPage, setCurrentPage] = useState(1);
+  const limit = 10;
 
-  const { leads, isLoading, error, updateLeadStatus } = useLeads({
+  const { leads, pagination, isLoading, error, updateLeadStatus } = useLeads({
     search,
     status,
-    page: 1,
-    limit: 10,
+    page: currentPage,
+    limit,
   });
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, status]);
 
   const handleSort = (field: SortField) => {
     if (sortField === field) {
@@ -167,6 +179,17 @@ export function LeadsTable({ search, status }: LeadsTableProps) {
             </TableRow>
           ))}
         </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TableCell colSpan={5}>
+              <Pagination
+                currentPage={pagination.page}
+                totalPages={pagination.totalPages}
+                onPageChange={handlePageChange}
+              />
+            </TableCell>
+          </TableRow>
+        </TableFooter>
       </Table>
     </TableContainer>
   );

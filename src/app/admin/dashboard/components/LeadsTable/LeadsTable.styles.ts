@@ -74,32 +74,9 @@ export const TableCell = styled.td`
   }
 `;
 
-export const StatusBadge = styled.span<{ $status: 'PENDING' | 'REACHED_OUT' }>`
-  display: inline-block;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-
-  ${(props) =>
-    props.$status === 'PENDING'
-      ? `
-    background-color: #fef3c7;
-    color: #92400e;
-    border: 1px solid #fde68a;
-  `
-      : `
-    background-color: #d1fae5;
-    color: #065f46;
-    border: 1px solid #a7f3d0;
-  `}
-
-  &:hover {
-    opacity: 0.8;
-    transform: translateY(-1px);
-  }
+export const TableFooter = styled.tfoot`
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-white);
 `;
 
 export const LoadingContainer = styled.div`
