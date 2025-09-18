@@ -65,7 +65,10 @@ A lead management application built with Next.js, featuring a public lead submis
 ### Architecture Choices
 
 #### **Styled Components**
-Styled Components was chosen as the styling solution to maintain component-scoped styles and prevent CSS conflicts. The TypeScript integration offers IntelliSense support and compile-time error checking for styles.
+Styled Components was chosen as the styling solution to maintain component-scoped styles and prevent CSS conflicts. Initially, Tailwind CSS was considered for rapid prototyping, but to meet the requirement of using CSS rather than utility classes, Styled Components provided a better balance. The TypeScript integration offers IntelliSense support and compile-time error checking for styles.
+
+#### **React Hook Form**
+React Hook Form was selected for form management due to familiarity with the library. While JsonForms was discovered during development and appears promising for schema-driven form generation, React Hook Form was chosen to ensure timely delivery.
 
 #### **Prisma + SQLite**
 Prisma ORM was selected for its strong TypeScript integration, generating types directly from the database schema. This approach ensures type safety across the entire data layer. SQLite serves as the development database for simplicity and portability, while Prisma's database-agnostic design allows for seamless migration to PostgreSQL or MySQL in production environments.
