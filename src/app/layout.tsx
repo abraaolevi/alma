@@ -6,8 +6,8 @@ import { AuthProvider } from '~/contexts';
 import StyledComponentsRegistry from '~/lib/registry';
 
 export const metadata: Metadata = {
-  title: 'Alma assignment',
-  description: 'Alma assignment',
+  title: 'Alma Immigration Legal Services, Reimagined',
+  description: 'Alma Immigration Legal Services, Reimagined',
   icons: [{ rel: 'icon', url: '/favicon.ico' }],
 };
 

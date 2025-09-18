@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { useId } from '~/hooks';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
   error?: string;
 }
 
@@ -43,7 +42,7 @@ const ErrorMessage = styled.span`
 `;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label: _label, error, id, ...props }, ref) => {
+  ({ error, id, ...props }, ref) => {
     const generatedId = useId('input');
     const inputId = id ?? generatedId;
 

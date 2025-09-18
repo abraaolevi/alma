@@ -58,21 +58,18 @@ export function LeadSubmissionForm({
       {error && <ErrorMessage>{error}</ErrorMessage>}
 
       <Input
-        label="First Name"
         placeholder="First Name"
         {...registerField('firstName')}
         error={errors.firstName?.message}
       />
 
       <Input
-        label="Last Name"
         placeholder="Last Name"
         {...registerField('lastName')}
         error={errors.lastName?.message}
       />
 
       <Input
-        label="Email"
         type="email"
         placeholder="Email"
         {...registerField('email')}
@@ -80,7 +77,6 @@ export function LeadSubmissionForm({
       />
 
       <Select
-        label="Country of Citizenship"
         placeholder="Country of Citizenship"
         options={countryOptions}
         {...registerField('country')}
@@ -88,7 +84,6 @@ export function LeadSubmissionForm({
       />
 
       <Input
-        label="LinkedIn / Personal Website URL"
         placeholder="LinkedIn / Personal Website URL"
         {...registerField('websiteUrl')}
         error={errors.websiteUrl?.message}

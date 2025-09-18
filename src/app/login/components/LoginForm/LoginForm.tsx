@@ -56,7 +56,6 @@ export function LoginForm() {
           {errors.root && <ErrorMessage>{errors.root.message}</ErrorMessage>}
 
           <Input
-            label="Username"
             placeholder="Username"
             {...register('username', {
               required: 'Username is required',
@@ -65,7 +64,6 @@ export function LoginForm() {
           />
 
           <Input
-            label="Password"
             type="password"
             placeholder="Password"
             {...register('password', {

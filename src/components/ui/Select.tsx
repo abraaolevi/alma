@@ -8,7 +8,6 @@ interface SelectOption {
 }
 
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
-  label?: string;
   error?: string;
   options: SelectOption[];
   placeholder?: string;
@@ -47,7 +46,7 @@ const ErrorMessage = styled.span`
 `;
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  ({ label: _label, error, options, placeholder, id, ...props }, ref) => {
+  ({ error, options, placeholder, id, ...props }, ref) => {
     const generatedId = useId('select');
     const selectId = id ?? generatedId;
 
