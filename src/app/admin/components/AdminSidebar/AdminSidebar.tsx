@@ -1,10 +1,12 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useAuth } from '~/contexts';
 import {
   AdminLabel,
   Avatar,
   Logo,
+  LogoutButton,
   NavItem,
   Navigation,
   SidebarContainer,
@@ -14,6 +16,13 @@ import {
 
 export function AdminSidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    router.push('/login');
+  };
 
   return (
     <SidebarContainer>
@@ -38,7 +47,10 @@ export function AdminSidebar() {
 
       <SidebarFooter>
         <Avatar>A</Avatar>
-        <AdminLabel>Admin</AdminLabel>
+        <div>
+          <AdminLabel>Admin</AdminLabel>
+          <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
+        </div>
       </SidebarFooter>
     </SidebarContainer>
   );

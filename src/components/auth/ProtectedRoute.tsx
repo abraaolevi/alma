@@ -3,18 +3,22 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useAuth } from '~/contexts';
-import { LoginForm } from './components';
 
-export default function Page() {
+interface ProtectedRouteProps {
+  children: React.ReactNode;
+}
+
+export function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!isLoading && isAuthenticated) {
-      router.push('/admin/dashboard');
+    if (!isLoading && !isAuthenticated) {
+      router.push('/login');
     }
   }, [isAuthenticated, isLoading, router]);
 
+  // Show loading state while checking authentication
   if (isLoading) {
     return (
       <div
@@ -23,6 +27,7 @@ export default function Page() {
           justifyContent: 'center',
           alignItems: 'center',
           height: '100vh',
+          fontSize: '1.125rem',
         }}
       >
         Loading...
@@ -30,9 +35,10 @@ export default function Page() {
     );
   }
 
-  if (isAuthenticated) {
-    return null; // Will redirect
+  // Don't render anything if not authenticated (will redirect)
+  if (!isAuthenticated) {
+    return null;
   }
 
-  return <LoginForm />;
+  return <>{children}</>;
 }

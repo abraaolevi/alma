@@ -2,6 +2,7 @@ import '~/styles/globals.css';
 
 import { type Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
+import { AuthProvider } from '~/contexts';
 import StyledComponentsRegistry from '~/lib/registry';
 
 export const metadata: Metadata = {
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${plusJakartaSans.variable}`}>
       <body>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <StyledComponentsRegistry>
+          <AuthProvider>{children}</AuthProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

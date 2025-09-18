@@ -89,6 +89,17 @@ export const Avatar = styled.div`
 
 export const AdminLabel = styled.span`
   font-weight: 800;
-  font-size: 20px;
+  font-size: 1.125rem;
   color: var(--color-black);
+`;
+
+export const LogoutButton = styled.button`
+  background: none;
+  border: none;
+  color: var(--color-black);
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  text-decoration: underline;
 `;

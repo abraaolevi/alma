@@ -1,8 +1,9 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { Button, ErrorMessage, Input } from '~/components';
-import { useAuth } from '~/hooks';
+import { useAuth } from '~/contexts';
 import {
   LoginCard,
   LoginContainer,
@@ -18,16 +19,27 @@ interface LoginFormData {
 }
 
 export function LoginForm() {
-  const { login, isLoading, error } = useAuth();
+  const { login, isLoading } = useAuth();
+  const router = useRouter();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm<LoginFormData>();
 
   const onSubmit = async (data: LoginFormData) => {
-    await login(data);
+    const result = await login(data.username, data.password);
+
+    if (result.success) {
+      router.push('/admin/dashboard');
+    } else {
+      setError('root', {
+        type: 'manual',
+        message: result.error ?? 'Login failed',
+      });
+    }
   };
 
   return (
@@ -41,7 +53,7 @@ export function LoginForm() {
         </LoginHeader>
 
         <StyledLoginForm onSubmit={handleSubmit(onSubmit)}>
-          {error && <ErrorMessage>{error}</ErrorMessage>}
+          {errors.root && <ErrorMessage>{errors.root.message}</ErrorMessage>}
 
           <Input
             label="Username"
