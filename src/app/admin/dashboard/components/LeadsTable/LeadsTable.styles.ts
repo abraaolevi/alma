@@ -63,7 +63,7 @@ export const TableRow = styled.tr`
 `;
 
 export const TableCell = styled.td`
-  padding: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
   font-size: 0.875rem;
   color: var(--color-black);
   vertical-align: middle;

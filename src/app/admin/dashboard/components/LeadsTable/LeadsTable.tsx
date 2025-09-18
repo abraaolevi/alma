@@ -172,7 +172,10 @@ export function LeadsTable({ search, status }: LeadsTableProps) {
               </TableCell>
               <TableCell>{lead.country}</TableCell>
               <TableCell>
-                <Button onClick={() => void handleStatusClick(lead)}>
+                <Button
+                  onClick={() => void handleStatusClick(lead)}
+                  style={{ fontSize: '0.75rem', padding: '6px 12px' }}
+                >
                   Change status
                 </Button>
               </TableCell>

@@ -21,15 +21,14 @@ export const PageNumber = styled.span`
 `;
 
 export const PageButton = styled.button<{ $isActive: boolean }>`
-  padding: 0.5rem 0.75rem;
+  padding: 2px 8px;
   border: ${(props) =>
     props.$isActive ? '1px solid var(--color-black)' : 'none'};
   color: ${(props) =>
     props.$isActive ? 'var(--color-black)' : 'var(--color-text-gray)'};
-  font-size: 0.875rem;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  min-width: 30px;
 
   &:hover {
     border-color: ${(props) =>
@@ -44,9 +43,8 @@ export const PageButton = styled.button<{ $isActive: boolean }>`
 `;
 
 export const NavButton = styled.button`
-  padding: 0.5rem 0.75rem;
   color: var(--color-black);
-  font-size: 0.875rem;
+  font-size: 12px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
